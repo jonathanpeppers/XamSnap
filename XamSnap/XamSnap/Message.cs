@@ -6,13 +6,15 @@ namespace XamSnap
     {
         public string Id { get; set; }
 
-        public string ConversationId { get; set; }
+        //NOTE: the Id of a Conversation
+        public string Conversation { get; set; }
 
-        public string UserId { get; set; }
-
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         public string Text { get; set; }
+
+        //NOTE: some messages will include photos
+        public string Image { get; set; }
     }
 }
 
