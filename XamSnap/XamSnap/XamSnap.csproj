@@ -39,9 +39,13 @@
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ServiceContainer.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
