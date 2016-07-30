@@ -36,6 +36,8 @@
     <Compile Include="Message.cs" />
     <Compile Include="IWebService.cs" />
     <Compile Include="FakeWebService.cs" />
+    <Compile Include="ISettings.cs" />
+    <Compile Include="FakeSettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
