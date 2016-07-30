@@ -43,11 +43,11 @@ namespace XamSnap
             };
         }
 
-        public async Task<User> AddFriend(string userName)
+        public async Task<User> AddFriend(string userName, string friendName)
         {
             await Sleep();
 
-            return new User { Name = userName };
+            return new User { Name = friendName };
         }
 
         public async Task<Conversation[]> GetConversations(string userName)
