@@ -5,6 +5,8 @@ namespace XamSnap
 {
     public class FakeWebService : IWebService
     {
+        private readonly ISettings settings = ServiceContainer.Resolve<ISettings>();
+
         public int SleepDuration { get; set; }
 
         public FakeWebService()
@@ -72,7 +74,7 @@ namespace XamSnap
                 {
                     Id = "1",
                     Conversation = conversation,
-                    UserName = "bobloblaw",
+                    UserName = settings.User.Name,
                     Text = "Hey",
                 },
                 new Message
@@ -86,7 +88,7 @@ namespace XamSnap
                 {
                     Id = "3",
                     Conversation = conversation,
-                    UserName = "bobloblaw",
+                    UserName = settings.User.Name,
                     Text = "Have you seen that new movie?",
                 },
                 new Message
