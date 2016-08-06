@@ -66,7 +66,9 @@
                             <constraint id="112" firstItem="22" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="70"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" id="12"/>
+                    <navigationItem key="navigationItem" title="XamSnap" id="12">
+                        <barButtonItem key="backBarButtonItem" title="Logout" id="171"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="indicator" destination="22" id="name-outlet-22"/>
                         <outlet property="username" destination="19" id="name-outlet-19"/>
@@ -101,13 +103,48 @@
                             <outlet property="delegate" destination="55" id="58"/>
                         </connections>
                     </tableView>
+                    <navigationItem title="Conversations" id="129" key="navigationItem">
+                        <barButtonItem key="rightBarButtonItem" id="130" systemItem="add">
+                            <connections>
+                                <segue id="165" destination="119" kind="show"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="61" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="680" y="44"/>
+            <point key="canvasLocation" x="660" y="45"/>
+        </scene>
+        <scene sceneID="118">
+            <objects>
+                <tableViewController id="119" sceneMemberID="viewController" customClass="FriendsController" title="Friends">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="120">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="123" rowHeight="44">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="123" id="124">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="119" id="121"/>
+                            <outlet property="delegate" destination="119" id="122"/>
+                        </connections>
+                    </tableView>
+                    <connections/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="125" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1103" y="45"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>
