@@ -28,7 +28,7 @@
                         <viewControllerLayoutGuide type="bottom" id="4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="13">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
@@ -48,7 +48,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="22" fixedFrame="YES" animating="YES" hidden="YES">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="22" animating="YES" hidden="YES">
                                 <rect key="frame" x="150" y="134" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
@@ -62,6 +62,8 @@
                             <constraint id="45" firstItem="21" firstAttribute="top" secondItem="13" secondAttribute="top" constant="204"/>
                             <constraint id="47" firstItem="21" firstAttribute="leading" secondItem="13" secondAttribute="leading" constant="137"/>
                             <constraint id="49" firstItem="13" firstAttribute="trailing" secondItem="21" secondAttribute="trailing" constant="137"/>
+                            <constraint id="111" firstItem="22" firstAttribute="centerX" secondItem="13" secondAttribute="centerX"/>
+                            <constraint id="112" firstItem="22" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="70"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="12"/>
@@ -70,11 +72,39 @@
                         <outlet property="username" destination="19" id="name-outlet-19"/>
                         <outlet property="password" destination="20" id="name-outlet-20"/>
                         <outlet property="login" destination="21" id="name-outlet-21"/>
+                        <segue id="103" destination="55" kind="show" identifier="OnLogin"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="219" y="42"/>
+        </scene>
+        <scene sceneID="54">
+            <objects>
+                <tableViewController id="55" sceneMemberID="viewController" customClass="ConversationsController" title="Conversations">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="56">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="59" rowHeight="44">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="59" id="60">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="55" id="57"/>
+                            <outlet property="delegate" destination="55" id="58"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="61" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="680" y="44"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
