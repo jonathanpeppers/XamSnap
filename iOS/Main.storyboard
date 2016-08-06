@@ -32,17 +32,17 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="19" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Username">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="19" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Username">
                                 <rect key="frame" x="20" y="105" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="20" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Password">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="20" translatesAutoresizingMaskIntoConstraints="NO" placeholder="Password">
                                 <rect key="frame" x="20" y="154" width="280" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="21" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="21" translatesAutoresizingMaskIntoConstraints="NO">
                                 <rect key="frame" x="137" y="204" width="46" height="30"/>
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -52,6 +52,17 @@
                                 <rect key="frame" x="150" y="134" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
+                        <constraints>
+                            <constraint id="30" firstItem="13" firstAttribute="trailing" secondItem="20" secondAttribute="trailing" constant="20"/>
+                            <constraint id="31" firstItem="20" firstAttribute="top" secondItem="13" secondAttribute="top" constant="154"/>
+                            <constraint id="39" firstItem="13" firstAttribute="trailing" secondItem="19" secondAttribute="trailing" constant="20"/>
+                            <constraint id="40" firstItem="19" firstAttribute="top" secondItem="13" secondAttribute="top" constant="105"/>
+                            <constraint id="42" firstItem="19" firstAttribute="leading" secondItem="13" secondAttribute="leading" constant="20"/>
+                            <constraint id="43" firstItem="20" firstAttribute="leading" secondItem="13" secondAttribute="leading" constant="20"/>
+                            <constraint id="45" firstItem="21" firstAttribute="top" secondItem="13" secondAttribute="top" constant="204"/>
+                            <constraint id="47" firstItem="21" firstAttribute="leading" secondItem="13" secondAttribute="leading" constant="137"/>
+                            <constraint id="49" firstItem="13" firstAttribute="trailing" secondItem="21" secondAttribute="trailing" constant="137"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="12"/>
                     <connections>
@@ -67,6 +78,6 @@
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
