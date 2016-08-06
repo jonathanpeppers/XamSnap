@@ -14,7 +14,7 @@ namespace XamSnap.iOS
         {
             base.ViewDidLoad();
 
-            TableView.Source = new TableSource();
+            TableView.Source = new TableSource(this);
         }
 
         public async override void ViewWillAppear(bool animated)
@@ -37,6 +37,12 @@ namespace XamSnap.iOS
         {
             const string CellName = "ConversationCell";
             readonly MessageViewModel messageViewModel = ServiceContainer.Resolve<MessageViewModel>();
+            readonly ConversationsController controller;
+
+            public TableSource(ConversationsController controller)
+            {
+                this.controller = controller; 
+            }
 
             public override nint RowsInSection(UITableView tableview, nint section)
             {
@@ -54,6 +60,13 @@ namespace XamSnap.iOS
                 }
                 cell.TextLabel.Text = conversation.UserName;
                 return cell;
+            }
+
+            public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+            {
+                var conversation = messageViewModel.Conversations[indexPath.Row];
+                messageViewModel.Conversation = conversation;
+                controller.PerformSegue("OnConversation", this);
             }
         }
     }

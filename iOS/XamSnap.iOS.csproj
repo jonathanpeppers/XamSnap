@@ -106,6 +106,7 @@
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -129,6 +130,10 @@
     <Compile Include="Controllers\FriendsController.cs" />
     <Compile Include="Controllers\FriendsController.designer.cs">
       <DependentUpon>FriendsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\MessagesController.designer.cs">
+      <DependentUpon>MessagesController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
