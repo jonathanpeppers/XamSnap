@@ -8,9 +8,7 @@ namespace XamSnap.iOS
     {
         readonly LoginViewModel loginViewModel = ServiceContainer.Resolve<LoginViewModel>();
 
-        public LoginController(IntPtr handle) : base(handle)
-        {
-        }
+        public LoginController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {

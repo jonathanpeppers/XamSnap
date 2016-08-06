@@ -8,9 +8,7 @@ namespace XamSnap.iOS
     {
         readonly MessageViewModel messageViewModel = ServiceContainer.Resolve<MessageViewModel>();
 
-        public ConversationsController (IntPtr handle) : base (handle)
-        {
-        }
+        public ConversationsController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
         {
