@@ -4,7 +4,7 @@ using Android.Runtime;
 
 namespace XamSnap.Droid
 {
-    [Application(Theme = "@android:style/Theme.Holo.Light")]
+    [Application(Theme = "@style/Theme.AppCompat.Light")]
     public class Application : Android.App.Application
     {
         public Application(IntPtr javaReference, JniHandleOwnership transfer) : base(javaReference, transfer)

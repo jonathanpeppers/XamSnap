@@ -2,12 +2,13 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Views;
+using Android.Support.V7.App;
+using AlertDialog = Android.Support.V7.App.AlertDialog;
 
 namespace XamSnap.Droid
 {
     [Activity]
-    public class BaseActivity<TViewModel> : Activity where TViewModel : BaseViewModel
+    public class BaseActivity<TViewModel> : AppCompatActivity where TViewModel : BaseViewModel
     {
         protected readonly TViewModel viewModel;
         protected ProgressDialog progress;
