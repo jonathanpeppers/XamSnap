@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="hello">Hello World, Click Me!</string>
-  <string name="app_name">XamSnap.Droid</string>
+    <string name="ApplicationName">XamSnap</string>
+    <string name="ErrorTitle">Oops!</string>
+    <string name="Loading">Loading</string>
+    <string name="Login">Login</string>
 </resources>
