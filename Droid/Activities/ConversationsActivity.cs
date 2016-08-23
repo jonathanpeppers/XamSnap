@@ -5,6 +5,7 @@ using Android.Content;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Android.Support.V7.View.Menu;
 
 namespace XamSnap.Droid
 {
@@ -22,6 +23,12 @@ namespace XamSnap.Droid
             listView = FindViewById<ListView>(Resource.Id.conversationsList);
             listView.Adapter =
               adapter = new Adapter(this);
+
+            listView.ItemClick += (sender, e) =>
+            {
+                viewModel.Conversation = viewModel.Conversations[e.Position];
+                StartActivity(typeof(MessagesActivity));
+            };
         }
 
         protected async override void OnResume()
