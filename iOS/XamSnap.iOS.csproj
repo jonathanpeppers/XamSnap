@@ -110,6 +110,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Controllers\" />
     <Folder Include="Views\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -138,6 +139,7 @@
     <Compile Include="Controllers\MessagesController.designer.cs">
       <DependentUpon>MessagesController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\ContactsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.mobile">

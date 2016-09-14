@@ -44,6 +44,7 @@
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\FriendViewModel.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
+    <Compile Include="Models\IFriendService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
