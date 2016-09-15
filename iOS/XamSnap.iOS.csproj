@@ -140,6 +140,7 @@
       <DependentUpon>MessagesController.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\ContactsService.cs" />
+    <Compile Include="Services\LocationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.mobile">

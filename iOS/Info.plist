@@ -42,5 +42,7 @@
 	</array>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>XamChat tags your location to messages and photos.</string>
 </dict>
 </plist>

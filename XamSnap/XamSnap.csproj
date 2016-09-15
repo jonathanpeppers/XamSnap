@@ -45,6 +45,8 @@
     <Compile Include="ViewModels\FriendViewModel.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="Models\IFriendService.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\ILocationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
