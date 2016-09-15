@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace XamSnap.Droid
@@ -9,12 +9,16 @@ namespace XamSnap.Droid
         {
             var book = new Xamarin.Contacts.AddressBook(Application.Context);
             await book.RequestPermission();
-            var contacts = book.ToArray();
-            return contacts.Select(c => new User
-            {
-                Name = c.DisplayName,
 
-            }).ToArray();
+            var users = new List<User>();
+            foreach (var contact in book)
+            {
+                users.Add(new User
+                {
+                    Name = contact.DisplayName,
+                });
+            }
+            return users.ToArray();
         }
     }
 }
