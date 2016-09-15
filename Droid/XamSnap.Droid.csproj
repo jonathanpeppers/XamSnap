@@ -72,6 +72,7 @@
     <Compile Include="Activities\ConversationsActivity.cs" />
     <Compile Include="Activities\FriendsActivity.cs" />
     <Compile Include="Activities\MessagesActivity.cs" />
+    <Compile Include="Services\ContactsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -100,6 +101,7 @@
     <Folder Include="Resources\layout\" />
     <Folder Include="Activities\" />
     <Folder Include="Resources\menu\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="xamarin.mobile">
