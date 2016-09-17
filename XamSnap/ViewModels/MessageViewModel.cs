@@ -16,6 +16,8 @@ namespace XamSnap
 
         public string Text { get; set; }
 
+        public string Image { get; set; }
+
         public async Task GetConversations()
         {
             if (settings.User == null)
@@ -56,7 +58,7 @@ namespace XamSnap
             if (Conversation == null)
                 throw new Exception("No conversation.");
 
-            if (string.IsNullOrEmpty(Text))
+            if (string.IsNullOrEmpty(Text) && string.IsNullOrEmpty(Image))
                 throw new Exception("Message is blank.");
 
             IsBusy = true;
@@ -69,8 +71,13 @@ namespace XamSnap
                     UserName = settings.User.Name,
                     Conversation = Conversation.Id,
                     Text = Text,
+                    Image = Image,
                     Location = location,
                 });
+
+                //Clear our variables
+                Text = 
+                    Image = null;
 
                 //Update our local list of messages
                 var messages = new List<Message>();
