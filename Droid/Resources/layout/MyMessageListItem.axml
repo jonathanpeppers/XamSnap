@@ -5,11 +5,16 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myMessageImage" />
     <TextView
         android:text="Message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/myMessageText"
         android:layout_margin="3dp"
-        android:textColor="@android:color/holo_blue_bright" />
+        android:textColor="@android:color/holo_blue_bright"
+        android:layout_toRightOf="@id/myMessageImage" />
 </RelativeLayout>

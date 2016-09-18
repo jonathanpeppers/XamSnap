@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/theirMessageImage" />
     <TextView
         android:text="Message"
         android:layout_width="wrap_content"

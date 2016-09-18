@@ -1,9 +1,11 @@
 ﻿using System;
 using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
+using Xamarin.Media;
 
 namespace XamSnap.Droid
 {
@@ -13,7 +15,10 @@ namespace XamSnap.Droid
         ListView listView;
         EditText messageText;
         Button sendButton;
+        ImageButton photoButton;
         Adapter adapter;
+        MediaPicker picker;
+        bool choosingPhoto;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -24,29 +29,75 @@ namespace XamSnap.Droid
             listView = FindViewById<ListView>(Resource.Id.messageList);
             messageText = FindViewById<EditText>(Resource.Id.messageText);
             sendButton = FindViewById<Button>(Resource.Id.sendButton);
+            photoButton = FindViewById<ImageButton>(Resource.Id.photoButton);
+
+            picker = new MediaPicker(this);
 
             listView.Adapter =
               adapter = new Adapter(this);
 
-            sendButton.Click += async (sender, e) =>
+            sendButton.Click += (sender, e) => Send();
+
+            photoButton.Click += (sender, e) =>
             {
-                viewModel.Text = messageText.Text;
-                try
-                {
-                    await viewModel.SendMessage();
-                    messageText.Text = string.Empty;
-                    adapter.NotifyDataSetInvalidated();
-                }
-                catch (Exception exc)
-                {
-                    DisplayError(exc);
-                }
+                var dialog = new AlertDialog.Builder(this)
+                    .SetTitle("Choose photo?")
+                    .SetPositiveButton("Take Photo", OnTakePhoto)
+                    .SetNegativeButton("Photo Library", OnChoosePhoto)
+                    .SetNeutralButton("Cancel", delegate { })
+                    .Create();
+                dialog.Show();
             };
+        }
+
+        void OnTakePhoto(object sender, EventArgs e)
+        {
+            var intent = picker.GetTakePhotoUI(new StoreCameraMediaOptions());
+            choosingPhoto = true;
+            StartActivityForResult(intent, 1);
+        }
+
+        void OnChoosePhoto(object sender, EventArgs e)
+        {
+            var intent = picker.GetPickPhotoUI();
+            choosingPhoto = true;
+            StartActivityForResult(intent, 1);
+        }
+
+        protected async override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            if (resultCode == Result.Ok)
+            {
+                var file = await data.GetMediaFileExtraAsync(this);
+                viewModel.Image = file.Path;
+                Send();
+            }
+        }
+
+        async void Send()
+        {
+            viewModel.Text = messageText.Text;
+            try
+            {
+                await viewModel.SendMessage();
+                messageText.Text = string.Empty;
+                adapter.NotifyDataSetInvalidated();
+            }
+            catch (Exception exc)
+            {
+                DisplayError(exc);
+            }
         }
 
         protected async override void OnResume()
         {
             base.OnResume();
+
+            if (choosingPhoto)
+            {
+                choosingPhoto = false;
+                return;
+            }
 
             try
             {
@@ -117,15 +168,20 @@ namespace XamSnap.Droid
                     }
                 }
                 TextView messageText;
+                ImageView image;
                 if (type == MyMessageType)
                 {
                     messageText = convertView.FindViewById<TextView>(Resource.Id.myMessageText);
+                    image = convertView.FindViewById<ImageView>(Resource.Id.myMessageImage);
                 }
                 else
                 {
                     messageText = convertView.FindViewById<TextView>(Resource.Id.theirMessageText);
+                    image = convertView.FindViewById<ImageView>(Resource.Id.theirMessageImage);
                 }
-                messageText.Text = message.Text;
+                messageText.Text = message.Text ?? string.Empty;
+                image.SetImageBitmap(string.IsNullOrEmpty(message.Image) ?
+                    null : BitmapFactory.DecodeFile(message.Image));
                 return convertView;
             }
 
