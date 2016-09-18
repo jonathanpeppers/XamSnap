@@ -50,6 +50,21 @@ namespace XamSnap.Droid
             };
         }
 
+        async void Send()
+        {
+            viewModel.Text = messageText.Text;
+            try
+            {
+                await viewModel.SendMessage();
+                messageText.Text = string.Empty;
+                adapter.NotifyDataSetInvalidated();
+            }
+            catch (Exception exc)
+            {
+                DisplayError(exc);
+            }
+        }
+
         void OnTakePhoto(object sender, EventArgs e)
         {
             var intent = picker.GetTakePhotoUI(new StoreCameraMediaOptions());
@@ -71,21 +86,6 @@ namespace XamSnap.Droid
                 var file = await data.GetMediaFileExtraAsync(this);
                 viewModel.Image = file.Path;
                 Send();
-            }
-        }
-
-        async void Send()
-        {
-            viewModel.Text = messageText.Text;
-            try
-            {
-                await viewModel.SendMessage();
-                messageText.Text = string.Empty;
-                adapter.NotifyDataSetInvalidated();
-            }
-            catch (Exception exc)
-            {
-                DisplayError(exc);
             }
         }
 
