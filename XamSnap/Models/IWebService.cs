@@ -4,8 +4,6 @@ namespace XamSnap
 {
     public interface IWebService
     {
-        Task<User> Login(string userName, string password);
-
         Task<User> Register(User user);
 
         Task<User> AddFriend(string userName, string friendName);

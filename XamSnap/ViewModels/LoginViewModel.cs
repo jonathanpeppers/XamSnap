@@ -5,6 +5,8 @@ namespace XamSnap
 {
     public class LoginViewModel : BaseViewModel
     {
+        readonly ILoginService loginService = ServiceContainer.Resolve<ILoginService>();
+
         public string UserName { get; set; }
 
         public string Password { get; set; }
@@ -20,7 +22,7 @@ namespace XamSnap
             IsBusy = true;
             try
             {
-                settings.User = await service.Login(UserName, Password);
+                settings.User = await loginService.Login(UserName, Password);
                 settings.Save();
             }
             finally
