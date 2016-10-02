@@ -39,5 +39,13 @@ namespace XamSnap.Tests
 
             Assert.IsNotNull(user);
         }
+
+        [Test]
+        public async Task GetFriends()
+        {
+            var friends = await _service.GetFriends("luke");
+
+            Assert.AreNotEqual(0, friends);
+        }
     }
 }

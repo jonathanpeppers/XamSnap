@@ -6,16 +6,31 @@ using Newtonsoft.Json;
 
 namespace XamSnap
 {
-    public class AzureFunctionsWebService : IWebService
+    public class AzureFunctionsWebService : IWebService, IFriendService
     {
         private const string BaseUrl = "https://xamsnap.azurewebsites.net/api/";
-        private const string Code = "n49qfil4y79il6yezfuwyiudi6avxyn09coyk4urlfh83b7f1orrgye9uaaupq6w82vp36czyqfr";
         private const string ContentType = "application/json";
         private readonly HttpClient _httpClient = new HttpClient();
 
         public Task<User> AddFriend(string userName, string friendName)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<User[]> GetFriends(string userName)
+        {
+            string json = JsonConvert.SerializeObject(new
+            {
+                userName
+            });
+            var content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+
+            var response = await _httpClient.PostAsync(BaseUrl + "friends?code=w0to2o614csk8e3iduc8fri7erkowfmuoavgxb6g2o11yvin6achwnsgecxgg6wqyeigrpb9", content);
+            response.EnsureSuccessStatusCode();
+
+            json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<User[]>(json);
         }
 
         public Task<Conversation[]> GetConversations(string userName)
@@ -38,7 +53,7 @@ namespace XamSnap
             var content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
 
-            var response = await _httpClient.PostAsync(BaseUrl + "login?code=" + Code, content);
+            var response = await _httpClient.PostAsync(BaseUrl + "login?code=n49qfil4y79il6yezfuwyiudi6avxyn09coyk4urlfh83b7f1orrgye9uaaupq6w82vp36czyqfr", content);
             response.EnsureSuccessStatusCode();
 
             return new User

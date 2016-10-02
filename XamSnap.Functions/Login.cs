@@ -20,7 +20,7 @@ namespace XamSnap.Functions
             if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            };
+            }
 
             log.Info($"userName={userName}");
 
