@@ -24,10 +24,18 @@ namespace XamSnap.Tests
             Assert.IsNotNull(user);
         }
 
-        [Test, ExpectedException(typeof(HttpRequestException))]
-        public async Task LoginExistingUser()
+        [Test]
+        public async Task LoginExisting()
         {
             var user = await _service.Login("Azure", "Woot");
+
+            Assert.IsNotNull(user);
+        }
+
+        [Test, ExpectedException(typeof(HttpRequestException))]
+        public async Task LoginExistingUserWrongPassword()
+        {
+            var user = await _service.Login("Azure", "aslidfjsalkf");
 
             Assert.IsNotNull(user);
         }
