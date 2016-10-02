@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Text;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -10,30 +11,37 @@ namespace XamSnap.Functions
     {
         private const string PartitionKey = "XamSnap";
 
-        public static HttpResponseMessage Run(User user, CloudTable outTable, TraceWriter log)
+        public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudTable outTable, TraceWriter log)
         {
-            if (string.IsNullOrEmpty(user.Username) || string.IsNullOrEmpty(user.Password))
+            dynamic data = await req.Content.ReadAsAsync<object>();
+            string userName = data?.userName;
+            string password = data?.password;
+
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             };
 
-            log.Info($"PersonName={user.Username}");
+            log.Info($"PersonName={userName}");
 
             //Let's hash all incoming passwords
-            user.Password = Hash(user.Password);
+            userName = Hash(userName);
 
-            var operation = TableOperation.Retrieve(PartitionKey, user.Username);
+            var operation = TableOperation.Retrieve<User>(PartitionKey, userName);
             var result = outTable.Execute(operation);
             var existing = result.Result as User;
             if (existing == null)
             {
-                user.RowKey = user.Username;
-                user.PartitionKey = PartitionKey;
-                operation = TableOperation.Insert(user);
+                operation = TableOperation.Insert(new User
+                {
+                    RowKey = userName,
+                    PartitionKey = PartitionKey,
+                    PasswordHash = password,
+                });
                 result = outTable.Execute(operation);
                 return new HttpResponseMessage((HttpStatusCode)result.HttpStatusCode);
             }
-            else if (existing.Password != user.Password)
+            else if (existing.PasswordHash != password)
             {
                 return new HttpResponseMessage(HttpStatusCode.Unauthorized);
             }
@@ -46,7 +54,7 @@ namespace XamSnap.Functions
         private static string Hash(string password)
         {
             var crypt = new System.Security.Cryptography.SHA256Managed();
-            var hash = new System.Text.StringBuilder();
+            var hash = new StringBuilder();
             byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(password), 0, Encoding.UTF8.GetByteCount(password));
             foreach (byte b in crypto)
             {
@@ -57,9 +65,7 @@ namespace XamSnap.Functions
 
         public class User : TableEntity
         {
-            public string Username { get; set; }
-
-            public string Password { get; set; }
+            public string PasswordHash { get; set; }
         }
     }
 }
