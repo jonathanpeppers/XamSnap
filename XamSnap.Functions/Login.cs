@@ -22,10 +22,10 @@ namespace XamSnap.Functions
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             };
 
-            log.Info($"PersonName={userName}");
+            log.Info($"userName={userName}");
 
             //Let's hash all incoming passwords
-            userName = Hash(userName);
+            password = Hash(password);
 
             var operation = TableOperation.Retrieve<User>(PartitionKey, userName);
             var result = outTable.Execute(operation);
@@ -39,7 +39,15 @@ namespace XamSnap.Functions
                     PasswordHash = password,
                 });
                 result = outTable.Execute(operation);
-                return new HttpResponseMessage((HttpStatusCode)result.HttpStatusCode);
+
+                if (result.HttpStatusCode == (int)HttpStatusCode.Created)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.OK);
+                }
+                else
+                {
+                    return new HttpResponseMessage((HttpStatusCode)result.HttpStatusCode);
+                }
             }
             else if (existing.PasswordHash != password)
             {
