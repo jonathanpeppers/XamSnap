@@ -62,6 +62,7 @@
     <Compile Include="TraceWriter.cs" />
     <Compile Include="Friends.cs" />
     <Compile Include="AddFriend.cs" />
+    <Compile Include="Conversations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

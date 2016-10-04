@@ -55,5 +55,13 @@ namespace XamSnap.Tests
             var user = await _service.AddFriend(Guid.NewGuid().ToString("N"), id);
             Assert.AreEqual(id, user.Name);
         }
+
+        [Test]
+        public async Task GetConversations()
+        {
+            var conversations = await _service.GetConversations("luke");
+
+            Assert.AreNotEqual(0, conversations);
+        }
     }
 }
