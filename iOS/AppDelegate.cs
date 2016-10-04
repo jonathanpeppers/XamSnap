@@ -22,8 +22,8 @@ namespace XamSnap.iOS
 
             //Models
             ServiceContainer.Register<ISettings>(() => new FakeSettings());
-            ServiceContainer.Register<IWebService>(() => new FakeWebService());
-            ServiceContainer.Register<IFriendService>(() => new ContactsService());
+            ServiceContainer.Register<IWebService>(() => new AzureFunctionsWebService());
+            ServiceContainer.Register<IFriendService>(() => new AzureFunctionsWebService());
             ServiceContainer.Register<ILocationService>(() => new LocationService());
 
             return true;

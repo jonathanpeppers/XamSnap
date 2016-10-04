@@ -106,6 +106,8 @@ namespace XamSnap
 
         public async Task<Message> SendMessage(Message message)
         {
+            message.Id = Guid.NewGuid().ToString("N");
+
             string json = JsonConvert.SerializeObject(message);
             var content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
