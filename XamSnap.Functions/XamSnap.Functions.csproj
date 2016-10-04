@@ -63,6 +63,7 @@
     <Compile Include="Friends.cs" />
     <Compile Include="AddFriend.cs" />
     <Compile Include="Conversations.cs" />
+    <Compile Include="Messages.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -63,9 +63,20 @@ namespace XamSnap
             return JsonConvert.DeserializeObject<Conversation[]>(json);
         }
 
-        public Task<Message[]> GetMessages(string conversation)
+        public async Task<Message[]> GetMessages(string conversation)
         {
-            throw new NotImplementedException();
+            string json = JsonConvert.SerializeObject(new
+            {
+                conversation
+            });
+            var content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+
+            var response = await _httpClient.PostAsync(BaseUrl + "messages?code=af6rdk8tdnx0hqi0gph7zxgvihmiu5k1l86j1ihrgtbs0v0a4ifai28nifb3q3zz3lwr3cba9k9", content);
+            response.EnsureSuccessStatusCode();
+
+            json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<Message[]>(json);
         }
 
         public async Task<User> Login(string userName, string password)

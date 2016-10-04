@@ -63,5 +63,13 @@ namespace XamSnap.Tests
 
             Assert.AreNotEqual(0, conversations);
         }
+
+        [Test]
+        public async Task GetMessages()
+        {
+            var messages = await _service.GetMessages("1");
+
+            Assert.AreNotEqual(0, messages);
+        }
     }
 }
