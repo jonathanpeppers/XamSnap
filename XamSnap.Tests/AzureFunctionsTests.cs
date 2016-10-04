@@ -47,5 +47,13 @@ namespace XamSnap.Tests
 
             Assert.AreNotEqual(0, friends);
         }
+
+        [Test]
+        public async Task AddFriend()
+        {
+            string id = Guid.NewGuid().ToString("N");
+            var user = await _service.AddFriend(Guid.NewGuid().ToString("N"), id);
+            Assert.AreEqual(id, user.Name);
+        }
     }
 }

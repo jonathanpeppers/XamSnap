@@ -12,9 +12,23 @@ namespace XamSnap
         private const string ContentType = "application/json";
         private readonly HttpClient _httpClient = new HttpClient();
 
-        public Task<User> AddFriend(string userName, string friendName)
+        public async Task<User> AddFriend(string userName, string friendName)
         {
-            throw new NotImplementedException();
+            string json = JsonConvert.SerializeObject(new
+            {
+                userName,
+                friendName
+            });
+            var content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+
+            var response = await _httpClient.PostAsync(BaseUrl + "addfriend?code=cyp0asakll1yfdus4vsk5u3dieves1y4rlldj0lphoj013v7viw9zxsb4vzxn3cy6rafmg9cnmi", content);
+            response.EnsureSuccessStatusCode();
+
+            return new User
+            {
+                Name = friendName,
+            };
         }
 
         public async Task<User[]> GetFriends(string userName)
