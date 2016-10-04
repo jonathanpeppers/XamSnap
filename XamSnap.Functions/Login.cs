@@ -63,7 +63,8 @@ namespace XamSnap.Functions
         {
             var crypt = new System.Security.Cryptography.SHA256Managed();
             var hash = new StringBuilder();
-            byte[] crypto = crypt.ComputeHash(Encoding.UTF8.GetBytes(password), 0, Encoding.UTF8.GetByteCount(password));
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
+            byte[] crypto = crypt.ComputeHash(bytes, 0, bytes.Length);
             foreach (byte b in crypto)
             {
                 hash.Append(b.ToString("x2"));
