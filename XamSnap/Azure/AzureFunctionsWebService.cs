@@ -104,9 +104,16 @@ namespace XamSnap
             throw new NotImplementedException();
         }
 
-        public Task<Message> SendMessage(Message message)
+        public async Task<Message> SendMessage(Message message)
         {
-            throw new NotImplementedException();
+            string json = JsonConvert.SerializeObject(message);
+            var content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+
+            var response = await _httpClient.PostAsync(BaseUrl + "sendmessage?code=v7z2tg7pprxb1f3vazmjwcdikuq9ql55wft1glcft1rsmunmi52vlomrm2ysuoaeg3d4vgta9k9", content);
+            response.EnsureSuccessStatusCode();
+
+            return message;
         }
     }
 }

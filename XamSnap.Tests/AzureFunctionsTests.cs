@@ -71,5 +71,19 @@ namespace XamSnap.Tests
 
             Assert.AreNotEqual(0, messages);
         }
+
+        [Test]
+        public async Task SendMessage()
+        {
+            var message = await _service.SendMessage(new Message
+            {
+                Conversation = "1",
+                Id = "5",
+                UserName = "luke",
+                Text = "asfadsfanlnk",
+            });
+
+            Assert.AreEqual("1", message.Conversation);
+        }
     }
 }
