@@ -12,18 +12,31 @@ namespace XamSnap
         private const string ContentType = "application/json";
         private readonly HttpClient _httpClient = new HttpClient();
 
+        private async Task<HttpResponseMessage> Post(string url, object obj)
+        {
+            string json = JsonConvert.SerializeObject(obj);
+            var content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
+
+            var response = await _httpClient.PostAsync(BaseUrl + url, content);
+            response.EnsureSuccessStatusCode();
+            return response;
+        }
+
+        private async Task<T> Post<T>(string url, object obj)
+        {
+            var response = await Post(url, obj);
+            string json = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(json);
+        }
+
         public async Task<User> AddFriend(string userName, string friendName)
         {
-            string json = JsonConvert.SerializeObject(new
+            await Post("addfriend?code=cyp0asakll1yfdus4vsk5u3dieves1y4rlldj0lphoj013v7viw9zxsb4vzxn3cy6rafmg9cnmi", new
             {
                 userName,
                 friendName
             });
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
-
-            var response = await _httpClient.PostAsync(BaseUrl + "addfriend?code=cyp0asakll1yfdus4vsk5u3dieves1y4rlldj0lphoj013v7viw9zxsb4vzxn3cy6rafmg9cnmi", content);
-            response.EnsureSuccessStatusCode();
 
             return new User
             {
@@ -31,66 +44,37 @@ namespace XamSnap
             };
         }
 
-        public async Task<User[]> GetFriends(string userName)
+        public Task<User[]> GetFriends(string userName)
         {
-            string json = JsonConvert.SerializeObject(new
+            return Post<User[]>("friends?code=w0to2o614csk8e3iduc8fri7erkowfmuoavgxb6g2o11yvin6achwnsgecxgg6wqyeigrpb9", new
             {
                 userName
             });
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
-
-            var response = await _httpClient.PostAsync(BaseUrl + "friends?code=w0to2o614csk8e3iduc8fri7erkowfmuoavgxb6g2o11yvin6achwnsgecxgg6wqyeigrpb9", content);
-            response.EnsureSuccessStatusCode();
-
-            json = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<User[]>(json);
         }
 
-        public async Task<Conversation[]> GetConversations(string userName)
+        public Task<Conversation[]> GetConversations(string userName)
         {
-            string json = JsonConvert.SerializeObject(new
+            return Post<Conversation[]>("conversations?code=hsfqtj34ejgmujbpnxyjy8pvi79lgvj19bai5u9htd477tu766re5fpy1vm77vtn2imeyrkbuik9", new
             {
                 userName
             });
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
-
-            var response = await _httpClient.PostAsync(BaseUrl + "conversations?code=hsfqtj34ejgmujbpnxyjy8pvi79lgvj19bai5u9htd477tu766re5fpy1vm77vtn2imeyrkbuik9", content);
-            response.EnsureSuccessStatusCode();
-
-            json = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Conversation[]>(json);
         }
 
-        public async Task<Message[]> GetMessages(string conversation)
+        public Task<Message[]> GetMessages(string conversation)
         {
-            string json = JsonConvert.SerializeObject(new
+            return Post<Message[]>("messages?code=af6rdk8tdnx0hqi0gph7zxgvihmiu5k1l86j1ihrgtbs0v0a4ifai28nifb3q3zz3lwr3cba9k9", new
             {
                 conversation
             });
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
-
-            var response = await _httpClient.PostAsync(BaseUrl + "messages?code=af6rdk8tdnx0hqi0gph7zxgvihmiu5k1l86j1ihrgtbs0v0a4ifai28nifb3q3zz3lwr3cba9k9", content);
-            response.EnsureSuccessStatusCode();
-
-            json = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<Message[]>(json);
         }
 
         public async Task<User> Login(string userName, string password)
         {
-            string json = JsonConvert.SerializeObject(new
+            await Post("login?code=n49qfil4y79il6yezfuwyiudi6avxyn09coyk4urlfh83b7f1orrgye9uaaupq6w82vp36czyqfr", new
             {
                 userName,
                 password,
             });
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
-
-            var response = await _httpClient.PostAsync(BaseUrl + "login?code=n49qfil4y79il6yezfuwyiudi6avxyn09coyk4urlfh83b7f1orrgye9uaaupq6w82vp36czyqfr", content);
-            response.EnsureSuccessStatusCode();
 
             return new User
             {
@@ -108,12 +92,7 @@ namespace XamSnap
         {
             message.Id = Guid.NewGuid().ToString("N");
 
-            string json = JsonConvert.SerializeObject(message);
-            var content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
-
-            var response = await _httpClient.PostAsync(BaseUrl + "sendmessage?code=v7z2tg7pprxb1f3vazmjwcdikuq9ql55wft1glcft1rsmunmi52vlomrm2ysuoaeg3d4vgta9k9", content);
-            response.EnsureSuccessStatusCode();
+            await Post("sendmessage?code=v7z2tg7pprxb1f3vazmjwcdikuq9ql55wft1glcft1rsmunmi52vlomrm2ysuoaeg3d4vgta9k9", message);
 
             return message;
         }
