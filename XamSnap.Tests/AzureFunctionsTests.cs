@@ -8,12 +8,12 @@ namespace XamSnap.Tests
     [TestFixture]
     public class AzureFunctionsTests
     {
-        private AzureFunctionsWebService _service;
+        private AzureWebService _service;
 
         [SetUp]
         public void SetUp()
         {
-            _service = new AzureFunctionsWebService();
+            _service = new AzureWebService();
         }
 
         [Test]

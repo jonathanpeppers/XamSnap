@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace XamSnap
 {
-    public class AzureFunctionsWebService : IWebService, IFriendService
+    public class AzureWebService : IWebService, IFriendService
     {
         private const string BaseUrl = "https://xamsnap.azurewebsites.net/api/";
         private const string ContentType = "application/json";
