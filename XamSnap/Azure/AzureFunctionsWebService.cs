@@ -12,27 +12,27 @@ namespace XamSnap
         private const string ContentType = "application/json";
         private readonly HttpClient _httpClient = new HttpClient();
 
-        private async Task<HttpResponseMessage> Post(string url, object obj)
+        private async Task<HttpResponseMessage> Post(string url, string code, object obj)
         {
             string json = JsonConvert.SerializeObject(obj);
             var content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
 
-            var response = await _httpClient.PostAsync(BaseUrl + url, content);
+            var response = await _httpClient.PostAsync(BaseUrl + url + "?code=" + code, content);
             response.EnsureSuccessStatusCode();
             return response;
         }
 
-        private async Task<T> Post<T>(string url, object obj)
+        private async Task<T> Post<T>(string url, string code, object obj)
         {
-            var response = await Post(url, obj);
+            var response = await Post(url, code, obj);
             string json = await response.Content.ReadAsStringAsync();
             return JsonConvert.DeserializeObject<T>(json);
         }
 
         public async Task<User> AddFriend(string userName, string friendName)
         {
-            await Post("addfriend?code=cyp0asakll1yfdus4vsk5u3dieves1y4rlldj0lphoj013v7viw9zxsb4vzxn3cy6rafmg9cnmi", new
+            await Post("addfriend", "cyp0asakll1yfdus4vsk5u3dieves1y4rlldj0lphoj013v7viw9zxsb4vzxn3cy6rafmg9cnmi", new
             {
                 userName,
                 friendName
@@ -46,7 +46,7 @@ namespace XamSnap
 
         public Task<User[]> GetFriends(string userName)
         {
-            return Post<User[]>("friends?code=w0to2o614csk8e3iduc8fri7erkowfmuoavgxb6g2o11yvin6achwnsgecxgg6wqyeigrpb9", new
+            return Post<User[]>("friends", "w0to2o614csk8e3iduc8fri7erkowfmuoavgxb6g2o11yvin6achwnsgecxgg6wqyeigrpb9", new
             {
                 userName
             });
@@ -54,7 +54,7 @@ namespace XamSnap
 
         public Task<Conversation[]> GetConversations(string userName)
         {
-            return Post<Conversation[]>("conversations?code=hsfqtj34ejgmujbpnxyjy8pvi79lgvj19bai5u9htd477tu766re5fpy1vm77vtn2imeyrkbuik9", new
+            return Post<Conversation[]>("conversations", "hsfqtj34ejgmujbpnxyjy8pvi79lgvj19bai5u9htd477tu766re5fpy1vm77vtn2imeyrkbuik9", new
             {
                 userName
             });
@@ -62,7 +62,7 @@ namespace XamSnap
 
         public Task<Message[]> GetMessages(string conversation)
         {
-            return Post<Message[]>("messages?code=af6rdk8tdnx0hqi0gph7zxgvihmiu5k1l86j1ihrgtbs0v0a4ifai28nifb3q3zz3lwr3cba9k9", new
+            return Post<Message[]>("messages", "af6rdk8tdnx0hqi0gph7zxgvihmiu5k1l86j1ihrgtbs0v0a4ifai28nifb3q3zz3lwr3cba9k9", new
             {
                 conversation
             });
@@ -70,7 +70,7 @@ namespace XamSnap
 
         public async Task<User> Login(string userName, string password)
         {
-            await Post("login?code=n49qfil4y79il6yezfuwyiudi6avxyn09coyk4urlfh83b7f1orrgye9uaaupq6w82vp36czyqfr", new
+            await Post("login", "5n2x69ueeoszzcz49900ctbj4i8yohucx7gbaad7taideoecdiw0gktlmu847b4vwss8dw2vs4i", new
             {
                 userName,
                 password,
@@ -92,7 +92,7 @@ namespace XamSnap
         {
             message.Id = Guid.NewGuid().ToString("N");
 
-            await Post("sendmessage?code=v7z2tg7pprxb1f3vazmjwcdikuq9ql55wft1glcft1rsmunmi52vlomrm2ysuoaeg3d4vgta9k9", message);
+            await Post("sendmessage", "v7z2tg7pprxb1f3vazmjwcdikuq9ql55wft1glcft1rsmunmi52vlomrm2ysuoaeg3d4vgta9k9", message);
 
             return message;
         }
