@@ -6,7 +6,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 
 private const string PartitionKey = "XamSnap";
 
-public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudTable outTable, TraceWriter log)
+public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudTable outputTable, TraceWriter log)
 {
     dynamic data = await req.Content.ReadAsAsync<object>();
     string userName = data?.userName;
@@ -15,15 +15,13 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudT
     if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(password))
     {
         return new HttpResponseMessage(HttpStatusCode.BadRequest);
-    };
-
-    log.Info($"userName={userName}");
+    }
 
     //Let's hash all incoming passwords
     password = Hash(password);
 
     var operation = TableOperation.Retrieve<User>(PartitionKey, userName);
-    var result = outTable.Execute(operation);
+    var result = outputTable.Execute(operation);
     var existing = result.Result as User;
     if (existing == null)
     {
@@ -33,7 +31,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudT
             PartitionKey = PartitionKey,
             PasswordHash = password,
         });
-        result = outTable.Execute(operation);
+        result = outputTable.Execute(operation);
 
         if (result.HttpStatusCode == (int)HttpStatusCode.Created)
         {
