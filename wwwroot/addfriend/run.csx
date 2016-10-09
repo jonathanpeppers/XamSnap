@@ -3,7 +3,7 @@
 using System.Net;
 using Microsoft.WindowsAzure.Storage.Table;
 
-public async static Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudTable outTable, TraceWriter log)
+public async static Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudTable outputTable, TraceWriter log)
 {
     dynamic data = await req.Content.ReadAsAsync<object>();
     string userName = data?.userName;
@@ -18,7 +18,7 @@ public async static Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudT
         PartitionKey = userName,
         RowKey = friendName,
     });
-    var result = outTable.Execute(operation);
+    var result = outputTable.Execute(operation);
 
     return req.CreateResponse((HttpStatusCode)result.HttpStatusCode);
 }
