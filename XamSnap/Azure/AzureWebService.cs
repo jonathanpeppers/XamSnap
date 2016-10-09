@@ -10,7 +10,7 @@ namespace XamSnap
     {
         private const string BaseUrl = "https://xamsnap.azurewebsites.net/api/";
         private const string ContentType = "application/json";
-        private readonly HttpClient _httpClient = new HttpClient();
+        private readonly HttpClient httpClient = new HttpClient();
 
         private async Task<HttpResponseMessage> Post(string url, string code, object obj)
         {
@@ -18,7 +18,7 @@ namespace XamSnap
             var content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue(ContentType);
 
-            var response = await _httpClient.PostAsync(BaseUrl + url + "?code=" + code, content);
+            var response = await httpClient.PostAsync(BaseUrl + url + "?code=" + code, content);
             response.EnsureSuccessStatusCode();
             return response;
         }
@@ -40,7 +40,7 @@ namespace XamSnap
 
             return new User
             {
-                Name = friendName,
+                Name = friendName
             };
         }
 
