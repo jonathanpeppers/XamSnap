@@ -3,7 +3,7 @@
 using System.Net;
 using Microsoft.WindowsAzure.Storage.Table;
 
-public async static Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudTable outTable, IDictionary<string, string> notification, TraceWriter log)
+public async static Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudTable outputTable, TraceWriter log)
 {
     dynamic data = await req.Content.ReadAsAsync<object>();
     if (data == null)
@@ -16,9 +16,7 @@ public async static Task<HttpResponseMessage> Run(HttpRequestMessage req, CloudT
         UserName = data.UserName,
         Text = data.Text,
     });
-    var result = outTable.Execute(operation);
-
-    notification["message"] = data.Text;
+    var result = outputTable.Execute(operation);
 
     return req.CreateResponse((HttpStatusCode)result.HttpStatusCode);
 }

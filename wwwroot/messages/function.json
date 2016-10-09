@@ -2,28 +2,21 @@
   "bindings": [
     {
       "type": "httpTrigger",
-      "direction": "in",
       "name": "req",
-      "methods": [
-        "post"
-      ],
-      "authLevel": "function"
-    },
-    {
-      "type": "http",
-      "direction": "out",
-      "name": "res"
+      "authLevel": "function",
+      "direction": "in"
     },
     {
       "type": "table",
       "name": "inputTable",
       "tableName": "messages",
       "connection": "AzureWebJobsDashboard",
-      "direction": "in",
-      "partitionKey": "",
-      "rowKey": "",
-      "take": "",
-      "filter": ""
+      "direction": "in"
+    },
+    {
+      "type": "http",
+      "name": "res",
+      "direction": "out"
     }
   ],
   "disabled": false

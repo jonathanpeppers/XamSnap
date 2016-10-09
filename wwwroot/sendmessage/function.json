@@ -2,31 +2,20 @@
   "bindings": [
     {
       "type": "httpTrigger",
-      "direction": "in",
       "name": "req",
-      "methods": [
-        "post"
-      ],
-      "authLevel": "function"
+      "authLevel": "function",
+      "direction": "in"
     },
     {
       "type": "http",
-      "direction": "out",
-      "name": "res"
-    },
-    {
-      "type": "table",
-      "name": "outTable",
-      "tableName": "messages",
-      "connection": "AzureWebJobsDashboard",
+      "name": "res",
       "direction": "out"
     },
     {
-      "name": "notification",
-      "type": "notificationHub",
-      "tagExpression": "",
-      "hubName": "xamSnap",
-      "connection": "Endpoint=sb://xamsnap.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=fiN0UAZ04+abK+B3IfMiA7woB9PuFnuLcl5AdOgTOnE=",
+      "type": "table",
+      "name": "outputTable",
+      "tableName": "messages",
+      "connection": "AzureWebJobsDashboard",
       "direction": "out"
     }
   ],
