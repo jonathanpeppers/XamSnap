@@ -2,11 +2,13 @@
 using Foundation;
 using UIKit;
 using WindowsAzure.Messaging;
+using System.Globalization;
 
 namespace XamSnap.iOS
 {
     public class AppleNotificationService : INotificationService
     {
+        private readonly CultureInfo enUS = CultureInfo.CreateSpecificCulture("en-US");
         private SBNotificationHub hub;
         private string userName;
 
@@ -27,7 +29,7 @@ namespace XamSnap.iOS
             }
 
             var tags = new NSSet(userName);
-            hub.RegisterNativeAsync((NSData)deviceToken, tags, (errorCallback) =>
+            hub.RegisterTemplateAsync((NSData)deviceToken, "iOS", "{\"aps\": {\"alert\": \"$(message)\"}}", DateTime.Now.AddDays(90).ToString(enUS), tags, errorCallback =>
             {
                 if (errorCallback != null)
                     Console.WriteLine("RegisterNativeAsync error: " + errorCallback);
