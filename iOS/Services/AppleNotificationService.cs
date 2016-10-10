@@ -28,8 +28,9 @@ namespace XamSnap.iOS
                 hub = new SBNotificationHub("Endpoint=sb://xamsnap.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=ZqbSdT8i+2YBpNNxmgMNAOrnoGPCBcr+/Hs9gecyNTQ=", "xamsnap");
             }
 
+            string template = "{\"aps\": {\"alert\": \"$(message)\"}}";
             var tags = new NSSet(userName);
-            hub.RegisterTemplateAsync((NSData)deviceToken, "iOS", "{\"aps\": {\"alert\": \"$(message)\"}}", DateTime.Now.AddDays(90).ToString(enUS), tags, errorCallback =>
+            hub.RegisterTemplateAsync((NSData)deviceToken, "iOS", template, DateTime.Now.AddDays(90).ToString(enUS), tags, errorCallback =>
             {
                 if (errorCallback != null)
                     Console.WriteLine("RegisterNativeAsync error: " + errorCallback);
