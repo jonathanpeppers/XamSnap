@@ -1,6 +1,8 @@
 ﻿using System;
 using Android.App;
 using Android.Runtime;
+using Android.Util;
+using Gcm.Client;
 
 namespace XamSnap.Droid
 {
@@ -28,6 +30,11 @@ namespace XamSnap.Droid
             ServiceContainer.Register<IFriendService>(() => new AzureWebService());
             ServiceContainer.Register<ILocationService>(() => new LocationService());
             ServiceContainer.Register<INotificationService>(() => new GoogleNotificationService());
+
+            //GCM
+            GcmClient.CheckDevice(this);
+            GcmClient.CheckManifest(this);
+            GcmClient.Register(this, Constants.ProjectId);
         }
     }
 }

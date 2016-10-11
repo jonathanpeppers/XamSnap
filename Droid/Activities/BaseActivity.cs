@@ -15,8 +15,7 @@ namespace XamSnap.Droid
 
         public BaseActivity()
         {
-            viewModel = ServiceContainer.Resolve(typeof(TViewModel)) as
-              TViewModel;
+            viewModel = ServiceContainer.Resolve(typeof(TViewModel)) as TViewModel;
         }
 
         protected override void OnCreate(Bundle savedInstanceState)
