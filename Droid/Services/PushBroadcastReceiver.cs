@@ -14,6 +14,6 @@ namespace XamSnap.Droid
     [IntentFilter(new string[] { Gcm.Client.Constants.INTENT_FROM_GCM_LIBRARY_RETRY }, Categories = new string[] { "@PACKAGE_NAME@" })]
     public class PushBroadcastReceiver : GcmBroadcastReceiverBase<PushHandlerService>
     {
-        public const string TAG = "PushBroadcastReceiver-GCM";
+
     }
 }
