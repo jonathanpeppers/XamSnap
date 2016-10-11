@@ -74,6 +74,7 @@
     <Compile Include="Activities\MessagesActivity.cs" />
     <Compile Include="Services\ContactsService.cs" />
     <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Services\GoogleNotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

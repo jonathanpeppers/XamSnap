@@ -27,6 +27,7 @@ namespace XamSnap.Droid
             ServiceContainer.Register<IWebService>(() => new AzureWebService());
             ServiceContainer.Register<IFriendService>(() => new AzureWebService());
             ServiceContainer.Register<ILocationService>(() => new LocationService());
+            ServiceContainer.Register<INotificationService>(() => new GoogleNotificationService());
         }
     }
 }
