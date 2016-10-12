@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamSnap.iOS", "iOS\XamSnap.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamSnap.Tests", "XamSnap.Tests\XamSnap.Tests.csproj", "{65B1C56F-230A-440A-9C75-F4CCC7F8B21E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamSnap.Functions", "XamSnap.Functions\XamSnap.Functions.csproj", "{6E8C58A7-F360-4E2C-B8E1-33A565721477}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,17 +67,5 @@ Global
 		{65B1C56F-230A-440A-9C75-F4CCC7F8B21E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{65B1C56F-230A-440A-9C75-F4CCC7F8B21E}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{65B1C56F-230A-440A-9C75-F4CCC7F8B21E}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Release|iPhone.Build.0 = Release|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{6E8C58A7-F360-4E2C-B8E1-33A565721477}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal
