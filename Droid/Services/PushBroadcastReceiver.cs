@@ -2,10 +2,6 @@
 using Android.Content;
 using Gcm.Client;
 
-[assembly: Permission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
-[assembly: UsesPermission(Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]
-[assembly: UsesPermission(Name = "com.google.android.c2dm.permission.RECEIVE")]
-
 namespace XamSnap.Droid
 {
     [BroadcastReceiver(Permission = Gcm.Client.Constants.PERMISSION_GCM_INTENTS)]

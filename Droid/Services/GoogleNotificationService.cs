@@ -8,7 +8,7 @@ namespace XamSnap.Droid
     public class GoogleNotificationService : INotificationService
     {
         readonly Context context;
-        private NotificationHub hub;
+        NotificationHub hub;
         string userName;
 
         public GoogleNotificationService(Context context)

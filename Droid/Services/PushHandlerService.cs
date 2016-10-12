@@ -37,7 +37,7 @@ namespace XamSnap.Droid
 
         protected override void OnUnRegistered(Context context, string registrationId)
         {
-            //TODO: implement Unregister() on INotificationService
+            Console.WriteLine("GCM unregistered!");
         }
 
         protected override void OnError(Context context, string errorId)
