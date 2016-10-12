@@ -251,5 +251,9 @@ paket-files/
 .idea/
 *.sln.iml
 
+#Mac OS
+.DS_Store
+
 #Xamarin
 Resource.designer.cs
+Components/

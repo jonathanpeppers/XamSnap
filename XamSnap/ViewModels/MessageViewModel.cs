@@ -6,6 +6,8 @@ namespace XamSnap
 {
     public class MessageViewModel : BaseViewModel
     {
+        private ILocationService locationService = ServiceContainer.Resolve<ILocationService>();
+
         public Conversation[] Conversations { get; private set; }
 
         public Conversation Conversation { get; set; }
@@ -13,6 +15,8 @@ namespace XamSnap
         public Message[] Messages { get; private set; }
 
         public string Text { get; set; }
+
+        public string Image { get; set; }
 
         public async Task GetConversations()
         {
@@ -54,18 +58,26 @@ namespace XamSnap
             if (Conversation == null)
                 throw new Exception("No conversation.");
 
-            if (string.IsNullOrEmpty(Text))
+            if (string.IsNullOrEmpty(Text) && string.IsNullOrEmpty(Image))
                 throw new Exception("Message is blank.");
 
             IsBusy = true;
             try
             {
+                var location = await locationService.GetCurrentLocation();
+
                 var message = await service.SendMessage(new Message
                 {
                     UserName = settings.User.Name,
                     Conversation = Conversation.Id,
-                    Text = Text
+                    Text = Text,
+                    Image = Image,
+                    Location = location,
                 });
+
+                //Clear our variables
+                Text = 
+                    Image = null;
 
                 //Update our local list of messages
                 var messages = new List<Message>();

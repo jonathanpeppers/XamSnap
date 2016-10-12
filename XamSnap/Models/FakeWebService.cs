@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace XamSnap
 {
-    public class FakeWebService : IWebService
+    public class FakeWebService : IWebService, IFriendService
     {
         private readonly ISettings settings = ServiceContainer.Resolve<ISettings>();
 

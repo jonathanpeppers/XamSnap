@@ -13,6 +13,9 @@ namespace XamSnap
 
         public string Text { get; set; }
 
+        //NOTE: GPS location of the sender
+        public Location Location { get; set; }
+
         //NOTE: some messages will include photos
         public string Image { get; set; }
     }

@@ -7,6 +7,8 @@ namespace XamSnap
 {
     public class FriendViewModel : BaseViewModel
     {
+        private IFriendService friendService = ServiceContainer.Resolve<IFriendService>();
+
         public User[] Friends { get; private set; }
 
         public string UserName { get; set; }
@@ -19,7 +21,7 @@ namespace XamSnap
             IsBusy = true;
             try
             {
-                Friends = await service.GetFriends(settings.User.Name);
+                Friends = await friendService.GetFriends(settings.User.Name);
             }
             finally
             {
