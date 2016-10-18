@@ -1,15 +1,14 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace XamSnap
 {
-    public class BaseViewModel
+    public class BaseViewModel : BindableObject
     {
-        protected readonly IWebService service = ServiceContainer.Resolve<IWebService>();
-        protected readonly ISettings settings = ServiceContainer.Resolve<ISettings>();
+        protected readonly IWebService service = DependencyService.Get<IWebService>();
+        protected readonly ISettings settings = DependencyService.Get<ISettings>();
 
-        public event EventHandler IsBusyChanged = (sender, e) => { };
-
-        private bool isBusy = false;
+        bool isBusy = false;
 
         public bool IsBusy
         {
@@ -17,10 +16,9 @@ namespace XamSnap
             set
             {
                 isBusy = value;
-                IsBusyChanged(this, EventArgs.Empty);
+                OnPropertyChanged();
             }
         }
     }
-
 }
 

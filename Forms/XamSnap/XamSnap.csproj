@@ -29,16 +29,66 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
-    <EmbeddedResource Include="XamSnapPage.xaml" />
+    <EmbeddedResource Include="Views\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ConversationsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="XamSnapPage.xaml.cs">
-      <DependentUpon>XamSnapPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\..\XamSnap\Models\Conversation.cs">
+      <Link>Models\Conversation.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\FakeSettings.cs">
+      <Link>Models\FakeSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\FakeWebService.cs">
+      <Link>Models\FakeWebService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\IFriendService.cs">
+      <Link>Models\IFriendService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\ILocationService.cs">
+      <Link>Models\ILocationService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\INotificationService.cs">
+      <Link>Models\INotificationService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\ISettings.cs">
+      <Link>Models\ISettings.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\IWebService.cs">
+      <Link>Models\IWebService.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\Location.cs">
+      <Link>Models\Location.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\Message.cs">
+      <Link>Models\Message.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\Models\User.cs">
+      <Link>Models\User.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\ViewModels\BaseViewModel.cs">
+      <Link>ViewModels\BaseViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\ViewModels\LoginViewModel.cs">
+      <Link>ViewModels\LoginViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\..\XamSnap\ViewModels\MessageViewModel.cs">
+      <Link>ViewModels\MessageViewModel.cs</Link>
+    </Compile>
+    <Compile Include="Views\LoginPage.xaml.cs">
+      <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConversationsPage.xaml.cs">
+      <DependentUpon>ConversationsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
@@ -53,6 +103,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.1.114\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />

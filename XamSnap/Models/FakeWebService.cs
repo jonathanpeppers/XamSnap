@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace XamSnap
 {
     public class FakeWebService : IWebService, IFriendService
     {
-        private readonly ISettings settings = ServiceContainer.Resolve<ISettings>();
+        private readonly ISettings settings = DependencyService.Get<ISettings>();
 
         public int SleepDuration { get; set; }
 

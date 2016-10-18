@@ -6,9 +6,17 @@ namespace XamSnap
 {
     public class MessageViewModel : BaseViewModel
     {
-        private ILocationService locationService = ServiceContainer.Resolve<ILocationService>();
+        Conversation[] conversations;
 
-        public Conversation[] Conversations { get; private set; }
+        public Conversation[] Conversations
+        {
+            get { return conversations; }
+            set
+            {
+                conversations = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Conversation Conversation { get; set; }
 
@@ -64,15 +72,12 @@ namespace XamSnap
             IsBusy = true;
             try
             {
-                var location = await locationService.GetCurrentLocation();
-
                 var message = await service.SendMessage(new Message
                 {
                     UserName = settings.User.Name,
                     Conversation = Conversation.Id,
                     Text = Text,
                     Image = Image,
-                    Location = location,
                 });
 
                 //Clear our variables

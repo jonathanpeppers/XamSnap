@@ -1,5 +1,8 @@
 ﻿using Xamarin.Forms;
 
+[assembly: Dependency(typeof(XamSnap.FakeWebService))]
+[assembly: Dependency(typeof(XamSnap.FakeSettings))]
+
 namespace XamSnap
 {
     public partial class App : Application
@@ -8,7 +11,7 @@ namespace XamSnap
         {
             InitializeComponent();
 
-            MainPage = new XamSnapPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         protected override void OnStart()
