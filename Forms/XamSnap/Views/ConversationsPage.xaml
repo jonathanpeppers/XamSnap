@@ -3,7 +3,7 @@
   <ListView ItemsSource="{Binding Conversations}">
     <ListView.ItemTemplate>
         <DataTemplate>
-            <TextCell Text="{Binding Username}" />
+            <TextCell Text="{Binding UserName}" />
         </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
